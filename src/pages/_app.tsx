@@ -1,19 +1,12 @@
 import { ReactElement } from 'react'
 
 import { MantineProvider } from '@mantine/core'
-import { NextPage } from 'next'
-import { AppProps } from 'next/app'
 import Head from 'next/head'
 
+import { wrapper } from '@/app/providers/storeProvider/config/store'
+import { AppPropsWithLayout } from '@/shared/types/pagesTypes'
+
 import '../styles/globals.css'
-
-export type NextPageWithLayout<P = unknown, IP = P> = NextPage<P, IP> & {
-  getLayout?: (page: ReactElement) => ReactElement
-}
-
-type AppPropsWithLayout = AppProps & {
-  Component: NextPageWithLayout
-}
 
 const App = ({ Component, pageProps }: AppPropsWithLayout): ReactElement => {
   const getLayout = Component.getLayout ?? (page => page)
@@ -28,7 +21,7 @@ const App = ({ Component, pageProps }: AppPropsWithLayout): ReactElement => {
         withGlobalStyles
         withNormalizeCSS
         theme={{
-          colorScheme: 'dark',
+          colorScheme: 'light',
         }}
       >
         <Component {...pageProps} />
@@ -37,4 +30,4 @@ const App = ({ Component, pageProps }: AppPropsWithLayout): ReactElement => {
   )
 }
 
-export default App
+export default wrapper.withRedux(App)

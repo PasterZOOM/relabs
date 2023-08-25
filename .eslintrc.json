@@ -194,22 +194,8 @@
       }
     ],
     "typescript-sort-keys/interface": "error",
-    "typescript-sort-keys/string-enum": "error"
-  },
-  "settings": {
-    "import/resolver": {
-      "node": {
-        "paths": [
-          "src"
-        ],
-        "extensions": [
-          ".js",
-          ".jsx",
-          ".ts",
-          ".tsx"
-        ]
-      }
-    }
+    "typescript-sort-keys/string-enum": "error",
+    "import/no-unresolved": "off"
   },
   "globals": {
     "JSX": true
