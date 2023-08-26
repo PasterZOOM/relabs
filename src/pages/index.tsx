@@ -1,17 +1,15 @@
-import { Inter } from 'next/font/google'
+import { Tabs } from '@mantine/core'
 
-import { MainLayout } from '@/app/layouts/initialLayout'
+import { MainLayout } from '../app/layouts/mainLayout'
+
+import { AppRoutes } from '@/shared/config/routerConfig'
 import { NextPageWithLayout } from '@/shared/types/pagesTypes'
-
-const inter = Inter({ subsets: ['latin'] })
 
 const HomePage: NextPageWithLayout = () => {
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
-    >
-      Home page
-    </main>
+    <Tabs.Panel pt="xs" value={AppRoutes.MAIN}>
+      <div>Main</div>
+    </Tabs.Panel>
   )
 }
 

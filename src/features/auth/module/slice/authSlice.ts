@@ -22,6 +22,9 @@ const authSlice = createSlice({
       }
       state.isInitialized = true
     },
+    logout: state => {
+      state.authData = null
+    },
   },
   extraReducers: builder => {
     builder.addMatcher(authAPI.endpoints.login.matchFulfilled, (state, { payload }) => {

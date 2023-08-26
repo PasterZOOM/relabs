@@ -2,9 +2,11 @@ import { useEffect } from 'react'
 
 import { useRouter } from 'next/router'
 
-import { authActions } from '@/features/auth'
-import { selectAuthData } from '@/features/auth/module/selectors/selectAuthData'
-import { selectIsInitialized } from '@/features/auth/module/selectors/selectIsInitialized'
+import { selectAuthData } from '../../selectors/selectAuthData'
+import { selectIsInitialized } from '../../selectors/selectIsInitialized'
+import { authActions } from '../../slice/authSlice'
+
+import { RoutePath } from '@/shared/config/routerConfig'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks/useAppDispatch'
 
 export const useInitAuthDate = (): void => {
@@ -18,6 +20,6 @@ export const useInitAuthDate = (): void => {
   }, [dispatch])
 
   if (isInitialised && !authData) {
-    push('/login').then()
+    push(RoutePath.auth).then()
   }
 }

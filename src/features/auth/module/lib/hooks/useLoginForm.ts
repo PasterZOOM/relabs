@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 
 import { useLoginMutation } from '../../api/authApi'
 
+import { RoutePath } from '@/shared/config/routerConfig'
 import { validateFn, ValidatorType } from '@/shared/lib/utils/validate/validateFn'
 
 type FormFields = {
@@ -40,6 +41,7 @@ export const useLoginForm = (): {
   onSubmit: (event?: FormEvent<HTMLFormElement> | undefined) => void
 } => {
   const { push } = useRouter()
+
   const [login, { isLoading }] = useLoginMutation()
 
   const { getInputProps, reset, onSubmit } = useForm<FormFields>({
@@ -52,7 +54,7 @@ export const useLoginForm = (): {
 
     if ('data' in res) {
       reset()
-      await push('/')
+      await push(RoutePath.main)
     }
   }
 
