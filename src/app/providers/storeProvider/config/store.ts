@@ -3,15 +3,14 @@ import { createWrapper } from 'next-redux-wrapper'
 
 import { StateSchema, ThunkExtraArg } from './stateSchema'
 
-import { userReducer } from '@/entities/user/model/slice/userSlice'
-import { authAPI } from '@/features/auth'
+import { authAlias, authAPI, authReducer } from '@/features/auth'
 
 type CustomStore = Store<StateSchema>
 
 export const createReactStore = (): CustomStore => {
   const rootReducers: ReducersMapObject<StateSchema> = {
     [authAPI.reducerPath]: authAPI.reducer,
-    user: userReducer,
+    [authAlias]: authReducer,
   }
 
   return configureStore({

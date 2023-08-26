@@ -8,8 +8,13 @@ import {
 import { CombinedState } from '@reduxjs/toolkit/src/query/core/apiState'
 import { NavigateOptions } from 'next/dist/shared/lib/app-router-context'
 
-import { UserSchema } from '@/entities/user'
-import { authAPI, LoginRequestType, LoginResponseTypes } from '@/features/auth'
+import {
+  authAlias,
+  authAPI,
+  AuthSchema,
+  LoginRequestType,
+  LoginResponseTypes,
+} from '@/features/auth'
 
 export type StateSchema = {
   [authAPI.reducerPath]: CombinedState<
@@ -31,7 +36,7 @@ export type StateSchema = {
     never,
     'authAPI'
   >
-  user: UserSchema
+  [authAlias]: AuthSchema
 }
 
 export type ThunkExtraArg = {

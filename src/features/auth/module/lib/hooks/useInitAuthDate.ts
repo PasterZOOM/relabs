@@ -2,7 +2,9 @@ import { useEffect } from 'react'
 
 import { useRouter } from 'next/router'
 
-import { selectAuthData, selectIsInitialized, userActions } from '@/entities/user'
+import { authActions } from '@/features/auth'
+import { selectAuthData } from '@/features/auth/module/selectors/selectAuthData'
+import { selectIsInitialized } from '@/features/auth/module/selectors/selectIsInitialized'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks/useAppDispatch'
 
 export const useInitAuthDate = (): void => {
@@ -12,7 +14,7 @@ export const useInitAuthDate = (): void => {
   const authData = useAppSelector(selectAuthData)
 
   useEffect(() => {
-    dispatch(userActions.initAuthData())
+    dispatch(authActions.initAuthData())
   }, [dispatch])
 
   if (isInitialised && !authData) {

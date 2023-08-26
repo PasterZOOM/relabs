@@ -34,7 +34,7 @@ export const AuthForm: FC<PropsType> = ({ className = '' }) => {
 
       <Group mt="xl" position="center">
         <Button loaderPosition="center" loading={inSubmitProcess} type="submit" variant="outline">
-          Submit
+          Авторизация
         </Button>
       </Group>
     </Box>
