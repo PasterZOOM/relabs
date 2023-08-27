@@ -23,6 +23,7 @@ const authSlice = createSlice({
       state.isInitialized = true
     },
     logout: state => {
+      localStorage.removeItem(USER_LOCALSTORAGE_KEY)
       state.authData = null
     },
   },

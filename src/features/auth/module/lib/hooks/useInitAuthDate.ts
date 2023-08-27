@@ -9,7 +9,7 @@ import { authActions } from '../../slice/authSlice'
 import { RoutePath } from '@/shared/config/routerConfig'
 import { useAppDispatch, useAppSelector } from '@/shared/lib/hooks/useAppDispatch'
 
-export const useInitAuthDate = (): void => {
+export const useInitAuthDate = (): { isLoading: boolean } => {
   const { push } = useRouter()
   const dispatch = useAppDispatch()
   const isInitialised = useAppSelector(selectIsInitialized)
@@ -22,4 +22,6 @@ export const useInitAuthDate = (): void => {
   if (isInitialised && !authData) {
     push(RoutePath.auth).then()
   }
+
+  return { isLoading: !isInitialised || !authData }
 }

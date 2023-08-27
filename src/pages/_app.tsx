@@ -4,6 +4,8 @@ import { MantineProvider } from '@mantine/core'
 import Head from 'next/head'
 
 import { wrapper } from '@/app/providers/storeProvider/config/store'
+import { selectIsInitialized } from '@/features/auth/module/selectors/selectIsInitialized'
+import { useAppSelector } from '@/shared/lib/hooks/useAppDispatch'
 import { AppPropsWithLayout } from '@/shared/types/pagesTypes'
 
 import '../styles/globals.css'

@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 import { headerTabs } from '@/app/layouts/mainLayout/module/tabs'
 import { authActions } from '@/features/auth'
-import { AppRoutes } from '@/shared/config/routerConfig'
+import { RoutePath } from '@/shared/config/routerConfig'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch'
 
 export const Header: FC = () => {
@@ -18,7 +18,7 @@ export const Header: FC = () => {
   return (
     <Tabs.List>
       {headerTabs.map(({ title, id, value, path }) => {
-        if (path === AppRoutes.AUTH) {
+        if (path === RoutePath.auth) {
           return (
             <Tabs.Tab key={id} value={value} onClick={logout}>
               {title}
