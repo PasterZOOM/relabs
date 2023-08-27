@@ -70,14 +70,22 @@ const Users: FC<PropsType> = ({ className = '' }) => {
 
   if (isLoading) {
     return (
-      <Flex align="center" direction="row" gap="md" justify="center" mih={300} wrap="wrap">
+      <Flex
+        align="center"
+        direction="row"
+        gap="md"
+        justify="center"
+        mih={300}
+        sx={{ width: '100%' }}
+        wrap="wrap"
+      >
         <Loader />
       </Flex>
     )
   }
 
   return (
-    <Flex align="center" className={className} direction="column" gap="xs">
+    <Flex align="center" className={className} direction="column" gap="xs" sx={{ width: '100%' }}>
       <Table highlightOnHover striped>
         <caption>Список пользователь</caption>
         <TableHead headers={headers} />

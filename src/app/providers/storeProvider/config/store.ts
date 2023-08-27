@@ -4,6 +4,7 @@ import { createWrapper } from 'next-redux-wrapper'
 import { StateSchema } from './stateSchema'
 
 import { authAlias, authAPI, authReducer } from '@/features/auth'
+import { eventsAlias, eventsReducer } from '@/features/events'
 import { usersAlias, usersReducer } from '@/features/users'
 
 type CustomStore = Store<StateSchema>
@@ -13,6 +14,7 @@ export const createReactStore = (): CustomStore => {
     [authAPI.reducerPath]: authAPI.reducer,
     [authAlias]: authReducer,
     [usersAlias]: usersReducer,
+    [eventsAlias]: eventsReducer,
   }
 
   return configureStore({
