@@ -9,7 +9,7 @@ import { Card } from '@/shared/ui/shop/card'
 const ShopPage: NextPageWithLayout = () => {
   return (
     <Tabs.Panel
-      className="grid-cols-catalog-products mx-auto grid w-full max-w-7xl place-items-center gap-4 px-4 md:gap-6 xl:auto-rows-max xl:gap-8"
+      className="mx-auto grid w-full max-w-7xl grid-cols-catalog-products place-items-center gap-4 px-4 md:gap-6 xl:auto-rows-max xl:gap-8"
       pb="xs"
       pt="xs"
       value={RoutePath.shop}
