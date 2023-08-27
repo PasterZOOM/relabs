@@ -17,8 +17,8 @@ export const Header: FC = () => {
 
   return (
     <Tabs.List>
-      {headerTabs.map(({ title, id, value, path }) => {
-        if (path === RoutePath.auth) {
+      {headerTabs.map(({ title, id, value }) => {
+        if (value === RoutePath.auth) {
           return (
             <Tabs.Tab key={id} value={value} onClick={logout}>
               {title}
@@ -27,7 +27,7 @@ export const Header: FC = () => {
         }
 
         return (
-          <Link key={id} href={path}>
+          <Link key={id} href={value}>
             <Tabs.Tab value={value}>{title}</Tabs.Tab>
           </Link>
         )

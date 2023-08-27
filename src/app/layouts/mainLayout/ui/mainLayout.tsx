@@ -1,12 +1,13 @@
 import { ReactElement } from 'react'
 
 import { Flex, Loader, Tabs } from '@mantine/core'
+import { useRouter } from 'next/router'
 
 import { useInitAuthDate } from '@/features/auth'
-import { AppRoutes } from '@/shared/config/routerConfig'
 import { Header } from '@/widgets/header'
 
 export const MainLayout = (page: ReactElement): ReactElement => {
+  const { pathname } = useRouter()
   const { isLoading } = useInitAuthDate()
 
   if (isLoading) {
@@ -18,7 +19,7 @@ export const MainLayout = (page: ReactElement): ReactElement => {
   }
 
   return (
-    <Tabs defaultValue={AppRoutes.MAIN}>
+    <Tabs defaultValue={pathname}>
       <Header />
       {page}
     </Tabs>
