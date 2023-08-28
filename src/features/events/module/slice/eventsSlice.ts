@@ -15,6 +15,7 @@ const eventsSlice = createSlice({
   reducers: {
     connect: state => {
       state.socket = new WebSocket(process.env.NEXT_PUBLIC_EVENTS_BASEURL || '')
+      console.log('connect')
     },
     pushEvent: (state, { payload }: PayloadAction<EventResponse>) => {
       const ctime = dateConverter(payload.ctime)
@@ -22,6 +23,7 @@ const eventsSlice = createSlice({
       state.events = [{ ctime, event: payload.event }, ...state.events]
     },
     disconnect: state => {
+      console.log('disconnect')
       state.socket?.close()
       state.socket = null
       state.events = []

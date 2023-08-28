@@ -5,6 +5,7 @@ import Link from 'next/link'
 
 import { headerTabs } from '@/app/layouts/mainLayout/module/tabs'
 import { authActions } from '@/features/auth'
+import { eventsActions } from '@/features/events'
 import { RoutePath } from '@/shared/config/routerConfig'
 import { useAppDispatch } from '@/shared/lib/hooks/useAppDispatch'
 
@@ -13,6 +14,7 @@ export const Header: FC = () => {
 
   const logout = (): void => {
     dispatch(authActions.logout())
+    dispatch(eventsActions.disconnect())
   }
 
   return (

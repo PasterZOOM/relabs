@@ -1,4 +1,4 @@
-import { FC, memo, useEffect, useMemo } from 'react'
+import { FC, memo, useEffect, useMemo, useState } from 'react'
 
 import { Flex, Table } from '@mantine/core'
 import { useSelector } from 'react-redux'
@@ -26,24 +26,24 @@ const Events: FC<PropsType> = ({ className = '' }) => {
   const dispatch = useAppDispatch()
   const socket = useSelector(selectEventsSocket)
   const events = useSelector(selectEvents)
+  const [isListen, setIsListen] = useState(false)
 
   useEffect(() => {
-    if (socket) {
-      socket.onmessage = (event: MessageEvent) => {
-        const data: EventResponse = JSON.parse(event.data)
+    const onMessage = (event: MessageEvent): void => {
+      const data: EventResponse = JSON.parse(event.data)
 
-        dispatch(eventsActions.pushEvent(data))
-      }
+      dispatch(eventsActions.pushEvent(data))
+      setIsListen(true)
     }
-  }, [dispatch, socket])
 
-  useEffect(() => {
-    dispatch(eventsActions.connect())
+    if (socket && !isListen) {
+      socket.addEventListener('message', onMessage)
+    }
 
     return () => {
-      dispatch(eventsActions.disconnect())
+      socket?.removeEventListener('message', onMessage)
     }
-  }, [dispatch])
+  }, [dispatch, socket])
 
   const rows = useMemo(() => {
     return events.map(item => ({
