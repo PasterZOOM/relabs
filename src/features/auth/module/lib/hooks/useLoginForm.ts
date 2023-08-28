@@ -16,12 +16,16 @@ type FormFields = {
 
 const passwordValidators: ValidatorType[] = [
   {
-    condition: value => !!hasLength({ min: 10 })(value),
+    condition: value => !!hasLength({ min: 8 })(value),
     message: 'Пароль должен быть 8 символов и больше',
   },
   {
-    condition: (value: string) => !/[A-Z]/.test(value),
+    condition: (value: string) => !/[A-ZА-Я]/.test(value),
     message: 'В пароле должна быть хотя бы одна заглавная буква',
+  },
+  {
+    condition: (value: string) => /\s/.test(value),
+    message: 'Пароль не должен содержать пробельных символов',
   },
 ]
 
@@ -50,7 +54,7 @@ export const useLoginForm = (): {
   })
 
   const onSubmitHandler = async (values: FormFields): Promise<void> => {
-    const res = await login({ email: values.email.trim(), password: values.password.trim() })
+    const res = await login(values)
 
     if ('data' in res) {
       reset()
