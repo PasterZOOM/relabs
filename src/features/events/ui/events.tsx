@@ -28,20 +28,18 @@ const Events: FC<PropsType> = ({ className = '' }) => {
   const events = useSelector(selectEvents)
 
   useEffect(() => {
-    if (socket) {
-      socket.onmessage = (event: MessageEvent) => {
-        const data: EventResponse = JSON.parse(event.data)
+    const onMessage = (event: MessageEvent): void => {
+      const data: EventResponse = JSON.parse(event.data)
 
-        dispatch(eventsActions.pushEvent(data))
-      }
+      dispatch(eventsActions.pushEvent(data))
     }
-  }, [dispatch, socket])
 
-  useEffect(() => {
-    dispatch(eventsActions.connect())
+    if (socket) {
+      socket.addEventListener('message', onMessage)
+    }
 
     return () => {
-      dispatch(eventsActions.disconnect())
+      socket?.removeEventListener('message', onMessage)
     }
   }, [dispatch])
 
